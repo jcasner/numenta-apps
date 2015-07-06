@@ -92,7 +92,6 @@ install-prerequisites-and-update-repos() {
   export PATH="${NUMENTA}/anaconda/bin:${PATH}"
   export PYTHONPATH="${NUMENTA}/anaconda/lib/python2.7/site-packages"
   "${NUMENTA}/anaconda/bin/pip" install --upgrade pip
-  "${NUMENTA}/anaconda/bin/pip" install numpy==1.9.2
 }
 
 run-salt() {
@@ -153,7 +152,7 @@ install-grok() {
     log_message "Running install-grok.sh"
 
     # TEMPORARY HACK - install nupic from a specific wheel
-    pip install -I https://pypi.numenta.com/api/package/nupic/nupic-0.2.5-cp27-none-linux_x86_64.whl
+    "${NUMENTA}/anaconda/bin/pip" install -I https://pypi.numenta.com/api/package/nupic/nupic-0.2.5-cp27-none-linux_x86_64.whl
 
     ./install-grok.sh "${NUMENTA}/anaconda/lib/python2.7/site-packages" "${NUMENTA}/anaconda/bin"
     if [ $? != 0 ]; then
