@@ -153,7 +153,7 @@ install-grok() {
     log_message "Running install-grok.sh"
 
     # TEMPORARY HACK - install nupic from a specific wheel
-    pip install -I https://pypi.numenta.com/api/package/nupic/nupic-0.2.6.dev0-cp27-none-linux_x86_64.whl
+    pip install -I https://pypi.numenta.com/api/package/nupic/nupic-0.2.5-cp27-none-linux_x86_64.whl
 
     ./install-grok.sh "${NUMENTA}/anaconda/lib/python2.7/site-packages" "${NUMENTA}/anaconda/bin"
     if [ $? != 0 ]; then
