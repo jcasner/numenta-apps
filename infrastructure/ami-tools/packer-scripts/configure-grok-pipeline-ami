@@ -31,7 +31,7 @@ PRODUCTS="${NUMENTA}/products"
 touch "${AMIBUILD_LOCK}"
 S3_ROOT_URL="https://s3-us-west-2.amazonaws.com/public.numenta.com/yum/x86_64"
 
-complain() {
+log_message() {
   echo "$@"
   logger -t ami-bake "$@"
 }
@@ -150,7 +150,10 @@ install-grok() {
   chown -R ec2-user:ec2-user "${PRODUCTS}"
 
   pushd "${PRODUCTS}"
-    complain "Running install-grok.sh"
+    log_message "Running install-grok.sh"
+
+    # TEMPORARY HACK - install nupic from a specific wheel
+    pip install -I https://pypi.numenta.com/api/package/nupic/nupic-0.2.6.dev0-cp27-none-linux_x86_64.whl
 
     ./install-grok.sh "${NUMENTA}/anaconda/lib/python2.7/site-packages" "${NUMENTA}/anaconda/bin"
     if [ $? != 0 ]; then
