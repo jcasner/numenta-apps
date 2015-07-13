@@ -92,7 +92,10 @@ install-prerequisites-and-update-repos() {
   export PATH="${NUMENTA}/anaconda/bin:${PATH}"
   export PYTHONPATH="${NUMENTA}/anaconda/lib/python2.7/site-packages"
   "${NUMENTA}/anaconda/bin/pip" install --upgrade pip setuptools
-  "${NUMENTA}/anaconda/bin/pip" install numpy==1.9.2
+  # HACK because the base AMI contains the wrong version of mock, we need to
+  # install the correct version. I'm unclear why having this in requirements.txt
+  # isn't covering us.
+  "${NUMENTA}/anaconda/bin/pip" install mock==1.0.1
 }
 
 run-salt() {
